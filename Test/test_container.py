@@ -44,4 +44,4 @@ def test_container_5():
     assert res[0] == 'hello world 4_2'
 
 if __name__ == '__main__':
-    pytest.main(['-s', '-v', '--junit-xml', f'{test_path}/Proxy_Test_Report.xml', __file__]) 
+    pytest.main(['-s', '-v', '--junit-xml', f'{test_path}/Container_Test_Report.xml', __file__]) 
