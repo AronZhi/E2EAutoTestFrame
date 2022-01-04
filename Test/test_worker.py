@@ -13,5 +13,4 @@ def test_worker():
     worker.Stop()
 
 if __name__ == '__main__':
-    #pytest.main(['-s', '-v', '--junit-xml', f'{test_path}/Worker_Test_Report.xml', __file__])
-    print(str(({'test': 1}, True)))
+    pytest.main(['-s', '-v', '--junit-xml', f'{test_path}/Worker_Test_Report.xml', __file__])
