@@ -6,6 +6,7 @@ class Container:
     def __init__(self) -> None:
         self.module_inst = {}
         self.class_inst = {}
+        self.last_error = ''
     
     def _HandleError(self, err_msg):
         etype, evalue, tb = sys.exc_info()
@@ -15,6 +16,12 @@ class Container:
             trace_back += str
         trace_back += err_msg
         g_main_log.error(trace_back)
+    
+    def GetLastError(self):
+        error = self.last_error
+        self.last_error = ''
+        return error
+        
 
     def GetModelObj(self, module_name):
         if module_name:

@@ -3,17 +3,21 @@ import json
 from uuid import uuid1
 from multiprocessing import Queue
 from Container.Container import Container
+from Container.ResponseProxy import ResponseProxy
 from Loger import g_main_log
 
 def Work(msg_queue: Queue, res_queue: Queue):
     container = Container()
+    resProxy = ResponseProxy()
     while True:
         json_msg = msg_queue.get()
         if json_msg.lower() == 'stop':
             break
         data = json.loads(json_msg)
         res = container.CallFunc(data)
-        res_queue.put(res)
+        error_msg = container.GetLastError()
+        res_str = resProxy.ConstrutBody(res, error_msg)
+        res_queue.put(res_str)
     return True
 
 class Worker:
